@@ -15,6 +15,8 @@ import javafx.scene.layout.Pane;
  * Defines a GUI for the Pig game.
  * This class was started by CS6910
  * 
+ * @author James Luke Johnson
+ * @version 2018.06.04
  */
 public class PigPane extends BorderPane {
 	private Game theGame;
@@ -43,14 +45,17 @@ public class PigPane extends BorderPane {
 		// TODO: 1. Using the 'first player chooser pane' as a guide
 		//  Create an HBox with the appropriate style, then make a human
 		//	player pane and add it to the HBox. Finally add the HBox to the content pane	
-	
+		this.addHumanPlayerPane(theGame);
+
 		// TODO: 2. Using the other panes as a guide, create and add a status pane	
-
+		this.addStatusPane(theGame);
+		
 		// TODO: 3. Using the other panes as a guide, create and add a computer pane
-
+		this.addComputerPlayerPane(theGame);
+		
 		this.setCenter(this.pnContent);
 	}
-
+	
 	private void addFirstPlayerChooserPane(Game theGame) {
 		HBox topBox = new HBox();
 		topBox.getStyleClass().add("pane-border");	
@@ -58,7 +63,31 @@ public class PigPane extends BorderPane {
 		topBox.getChildren().add(this.pnChooseFirstPlayer);
 		this.pnContent.setTop(topBox);
 	}
+	
+	private void addHumanPlayerPane(Game theGame) {
+		HBox leftBox = new HBox();
+		leftBox.getStyleClass().add("pane-border");
+		this.pnHumanPlayer = new HumanPane(theGame);
+		leftBox.getChildren().add(this.pnHumanPlayer);
+		this.pnContent.setLeft(leftBox);
+	}
 
+	private void addStatusPane(Game theGame) {
+		HBox centerBox = new HBox();
+		centerBox.getStyleClass().add("pane-border");
+		this.pnGameInfo = new StatusPane(theGame);
+		centerBox.getChildren().add(this.pnGameInfo);
+		this.pnContent.setCenter(centerBox);
+	}
+	
+	private void addComputerPlayerPane(Game theGame) {
+		HBox rightBox = new HBox();
+		rightBox.getStyleClass().add("pane-border");
+		this.pnComputerPlayer = new ComputerPane(theGame);
+		rightBox.getChildren().add(this.pnComputerPlayer);
+		this.pnContent.setRight(rightBox);
+	}
+	
 	/*
 	 * Defines the panel in which the user selects which Player plays first.
 	 */
