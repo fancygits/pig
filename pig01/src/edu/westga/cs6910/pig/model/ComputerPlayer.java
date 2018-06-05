@@ -32,9 +32,12 @@ public class ComputerPlayer extends AbstractPlayer {
 	/**
 	 * @see Player#takeTurn()
 	 */	
-	public void takeTurn() {				
+	public void takeTurn() {	
+		this.setIsMyTurn(true);
 		for (int count = 0; count < this.maximumRolls; count++) {
-			super.takeTurn();
+			if (this.getIsMyTurn()) {
+				super.takeTurn();
+			}
 		}
 		this.setIsMyTurn(false);
 	}
