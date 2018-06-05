@@ -52,6 +52,10 @@ public abstract class AbstractPlayer implements Player {
 	public void resetTurnTotal() {
 		this.turnTotal = 0;
 	}
+	
+	public void setIsMyTurn(boolean isMyTurn) {
+		this.isMyTurn = isMyTurn;
+	}
 
 	//*************************** accessor methods ****************************
 	/* (non-Javadoc)

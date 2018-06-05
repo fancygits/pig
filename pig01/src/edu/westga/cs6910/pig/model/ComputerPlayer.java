@@ -36,6 +36,7 @@ public class ComputerPlayer extends AbstractPlayer {
 		for (int count = 0; count < this.maximumRolls; count++) {
 			super.takeTurn();
 		}
+		this.setIsMyTurn(false);
 	}
 	
 	//*************************** mutator methods ****************************

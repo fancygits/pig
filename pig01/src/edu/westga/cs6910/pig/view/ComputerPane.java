@@ -109,7 +109,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		 */
 		@Override
 		public void handle(ActionEvent arg0) {
-			// TODO: if the game isn't finished: 
+			// DONE: if the game isn't finished: 
 			//		 - Set the maximum number of rolls
 			//		 - Tell theGame to play a move.
 			if (!ComputerPane.this.theGame.isGameOver()) {
