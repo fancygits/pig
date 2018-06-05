@@ -86,13 +86,16 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		boolean myTurn = this.theGame.getCurrentPlayer() == theComputer;
 		
 		if (!myTurn) {
-			// TODO: Set the user interface to show the results
+			// DONE: Set the user interface to show the results
 			// of the computer rolling the dice
-
+			int turnTotal = this.theComputer.getTurnTotal();
+			String result = this.theComputer.getDiceValues();
+			this.lblDiceValues.setText(result);
+			this.lblTurnTotal.setText("" + turnTotal);
 		} 
-		// TODO: Disable this Pane if it is no longer the computer's turn, enable it if
+		// DONE: Disable this Pane if it is no longer the computer's turn, enable it if
 		// it is the computer's turn
-
+		this.setDisable(!myTurn);
 	}
 
 	/* 
@@ -111,7 +114,11 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			// TODO: if the game isn't finished: 
 			//		 - Set the maximum number of rolls
 			//		 - Tell theGame to play a move.
-
+			if (!ComputerPane.this.theGame.isGameOver()) {
+				ComputerPane.this.theComputer.setMaximumRolls();
+				ComputerPane.this.theGame.play();
+			}
+			
 		}
 	}
 }
