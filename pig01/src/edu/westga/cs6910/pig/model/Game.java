@@ -96,9 +96,10 @@ public class Game implements Observable {
 	 * @ensures		!whoseTurn().equals(whoseTurn()@prev)
 	 */
 	public void hold() {
-		// TODO: Swap whose turn it is.
-		
-		this.isGameOver();
+		// DONE: Swap whose turn it is.
+		if (!this.isGameOver()) {
+			this.swapWhoseTurn();
+		}
 	}
 
 	// *********************** accessor methods *************************
@@ -189,11 +190,15 @@ public class Game implements Observable {
 	// ************************ private helper method *************************
 
 	private void swapWhoseTurn() {
-		// TODO: Swap the players so that the other player becomes 
+		// DONE: Swap the players so that the other player becomes 
 		//       the current player.  Note that in order to access the
 		//		 object inside of the ObjectProperty, you'll need to use
 		//		 getValue() and setValue()
-
+		if (this.currentPlayerObject.getValue() == this.theHuman) {
+			this.currentPlayerObject.setValue(this.theComputer);
+		} else {
+			this.currentPlayerObject.setValue(this.theHuman);
+		}
 	}
 
 	@Override

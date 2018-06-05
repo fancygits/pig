@@ -1,6 +1,6 @@
 package edu.westga.cs6910.pig.model;
 
-// TODO: Classes ComputerPlayer and HumanPlayer share most of their code.
+// DONE: Classes ComputerPlayer and HumanPlayer share most of their code.
 //		 Refactor their code:
 // 		 1. Create abstract base class AbstractPlayer to implement the
 //			shared code and define abstract methods for methods without
@@ -34,9 +34,7 @@ public class ComputerPlayer extends AbstractPlayer {
 	 */	
 	public void takeTurn() {				
 		for (int count = 0; count < this.maximumRolls; count++) {
-			if (this.getIsMyTurn()) {
-				super.takeTurn();
-			}
+			super.takeTurn();
 		}
 	}
 	
