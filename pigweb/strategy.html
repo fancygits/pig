@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Luke Johnson">
+	<meta name="description" content="Information, history, rules of pig, the dice game.">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+	<!--[if lt IE 9]>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<![endif]-->
+	<title>Pigpen :: Strategy</title>
+</head>
+<body>
+	<header>
+		<a href="index.html">
+			<h1>The Pigpen</h1>
+			<h2>Don't be a greedy pig!</h2>
+		</a>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="instructions.html">Instructions</a></li>
+			<li><a href="history.html">History</a></li>
+			<li><a href="strategy.html">Strategy</a></li>
+		</ul>
+	</nav>
+	<main>
+		<h3>Strategy</h3>
+		<p>Since mathematics professors use Pig to teach probability, the game has been very thoroughly analyzed and optimized.</p>
+		<p>The Gettysburg College Department of Computer Science has a visual and <a href="http://cs.gettysburg.edu/projects/pig/pigVis.html" target="_blank">informative analysis.</a></p>
+		<p>The general rule for an optimal player is to <strong>hold at 20</strong>. If your turn total is less than 20, the odds are in your favor and you should continue rolling.</p>
+		<p>This "hold at 20" rule breaks down near the end of the game though. If your opponent has a score of 99, and you have 75, it's best to continue rolling beyond 20,
+			since your opponent is statistically likely to win on his/her next turn.</p>
+		<figure>
+			<img src="images/optimal.gif" alt="Animation of the entire roll/hold boundary for the optimal Pig play policy.">
+			<figcaption>
+				Fig1. - The entire roll/hold boundary for the optimal Pig play policy.<br>
+				Author: <a href="http://cs.gettysburg.edu/projects/pig/pigVis.html">Clif Presser</a>
+			</figcaption>
+		</figure>
+
+	</main>
+	<footer>
+		Created by <a href="mailto:jjohn144@my.westga.edu">Luke Johnson</a> for CS6910<br>
+		<small><a href="sources.html">Sources</a></small>
+	</footer>
+</body>
+</html>

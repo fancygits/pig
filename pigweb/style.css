@@ -1,0 +1,174 @@
+body {
+	background-color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	margin: 10px 0;
+	display: flex;
+	min-height: 97vh;
+	flex-direction: column;
+}
+
+header, main {
+	width: 90%;
+	margin: auto;
+}
+
+header {
+	background-image: url(images/black-pig.png);
+	background-repeat: no-repeat;
+	background-size: 300px;
+	background-position: top left;
+	height: 175px;
+}
+
+header a h1 {
+	margin: 0 0 0 45px;
+	padding-top: 20px;
+	font-weight: 100;
+}
+
+header a {
+	font-family: 'Bowlby One SC', cursive;
+	color: #e5e338;
+	text-decoration: none;
+}
+
+header h2 {
+	margin: 0 0 0 20px;
+	font-size: 130%;
+	font-weight: 100;
+}
+
+nav {
+	border-top: 10px solid #000;
+	border-bottom: 10px solid #000;
+	background-color: #ec576b;
+	text-align: center;
+}
+
+nav a {
+	color: #fff;
+	font-family: 'Bowlby One SC', cursive;
+	text-decoration: none;
+	font-weight: 100;
+	font-size: 170%;
+}
+
+nav a:hover {
+	color: #e5e338;
+}
+
+nav ul {
+	padding: 0;
+}
+
+nav li {
+	display: inline-block;
+	padding: 20px 50px;
+	list-style-type: none;
+}
+
+main {
+	flex: 1;
+}
+
+h3 {
+	color: #4ec5c1;
+	font-family: 'Bowlby One SC', cursive;
+	font-size: 250%;
+	font-weight: 100;
+	margin: 10px auto;
+}
+
+h4 {
+	color: #4ec5c1;
+	font-family: 'Bowlby One SC', cursive;
+	font-size: 150%;
+	font-weight: 100;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+
+a {
+	color: #ec576b;
+	font-family: 'Bowlby One SC', cursive;
+	font-weight: 100;
+	text-decoration: none;
+}
+
+ul {
+	padding-left: 60px;
+}
+
+.pigs li {
+	list-style-image: url(images/list-pig.png);
+	line-height: 30px;
+}
+
+ol {
+	list-style: none;
+	counter-reset: li
+}
+
+.numberedPigs li {
+	padding-left: 10px;
+	line-height: 30px;
+	counter-increment: li;
+}
+
+.numberedPigs li::before {
+	background-image: url(images/list-pig.png);
+	background-repeat: no-repeat;
+	background-position: 0;
+	content: counter(li);
+	display: inline-block;
+	padding-left: 10px;
+	width: 30px;
+	margin-left: -30px;
+	font-family: 'Bowlby One SC', cursive;
+	color: #000;
+}
+
+footer {
+	font-family: 'Bowlby One SC', cursive;
+	font-weight: 100;
+	border-top: 10px solid #000;
+	border-bottom: 10px solid #000;
+	background-color: #e5e338;
+	color: #000;
+	text-align: center;
+	padding: 10px;
+}
+
+footer a {
+	color: #000;
+	text-decoration: none;
+}
+
+hr {
+	background-color: #000;
+    border: 0;
+    height: 10px;
+	margin:1em -100%; /* old browsers fallback */
+  	margin:1em calc(50% - 49vw);
+}
+
+strong {
+	font-family: 'Bowlby One SC', cursive;
+	font-weight: 100;
+}
+
+/* SCREEN SIZE ADJUSTMENTS */
+@media only screen and (max-width: 1024px) {
+	nav li {
+		padding: 10px 20px;
+	}
+}
+
+@media only screen and (max-width: 768px) {
+	nav ul {
+		margin: 0;
+	}
+	nav li {
+		display: block;
+	}
+}
