@@ -1,4 +1,5 @@
 package edu.westga.cs6910.pig.testing.die;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Random;

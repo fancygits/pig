@@ -23,14 +23,14 @@ class TestWhenRoll {
 	@Test
 	void testRoll10000TimesShouldNotReturn0or7() {
 		Die testDie = new Die(new Random());
-			for (int count = 0; count < 10000; count++) {
-				testDie.roll();
-				if (testDie.getNumberOfPips() < 1 
-						|| testDie.getNumberOfPips() > 6) {
-					fail("Rolled a die with value: "
-						+ testDie.getNumberOfPips());
-				}
+		for (int count = 0; count < 10000; count++) {
+			testDie.roll();
+			if (testDie.getNumberOfPips() < 1 
+					|| testDie.getNumberOfPips() > 6) {
+				fail("Rolled a die with value: "
+					+ testDie.getNumberOfPips());
 			}
+		}
 	}
 
 }

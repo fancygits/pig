@@ -27,7 +27,7 @@ class TestWhenDicePairRollDice {
 			int sum = newPair.getDie1Value() + newPair.getDie2Value();
 			if (sum < 2 || sum > 12) {
 				fail("Rolled dice with values: " + newPair.getDie1Value() 
-				+ ", " + newPair.getDie2Value());
+					+ ", " + newPair.getDie2Value());
 			}
 		}
 	}
