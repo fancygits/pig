@@ -8,7 +8,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
-import javafx.scene.layout.StackPane;
 
 /**
  * Defines the pane of the menu, where the user can exit and 
@@ -17,7 +16,7 @@ import javafx.scene.layout.StackPane;
  * @author James Luke Johnson
  * @version 2018.06.14
  */
-public class MenuPane extends StackPane {
+public class MenuPane extends MenuBar {
 	private Game theGame;
 	private ComputerPlayer theComputer;
 	
@@ -35,11 +34,8 @@ public class MenuPane extends StackPane {
 		this.buildPane();
 	}
 	
-	private void buildPane() {
-		MenuBar menuBar = new MenuBar();
-		
+	private void buildPane() {		
 		Menu fileMenu = new Menu("_File");
-		//fileMenu.setMnemonicParsing(true);
 		MenuItem exitMenuItem = new MenuItem("E_xit");
 		exitMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.SHORTCUT_DOWN));
 		exitMenuItem.setOnAction(actionEvent -> System.exit(0));
@@ -52,7 +48,6 @@ public class MenuPane extends StackPane {
 		MenuItem randomMenuItem = new MenuItem("_Random");
 		strategyMenu.getItems().addAll(cautiousMenuItem, greedyMenuItem, randomMenuItem);
 		
-		menuBar.getMenus().addAll(fileMenu, strategyMenu);
-		this.getChildren().add(menuBar);
+		this.getMenus().addAll(fileMenu, strategyMenu);
 	}
 }
