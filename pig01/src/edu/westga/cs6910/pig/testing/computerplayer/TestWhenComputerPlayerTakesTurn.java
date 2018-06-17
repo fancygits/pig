@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the takeTurn method of ComputerPlayer
@@ -22,7 +23,7 @@ class TestWhenComputerPlayerTakesTurn {
 	 */
 	@Test
 	void testTakeTurn10000TimesShouldHaveTurnTotalGoingAbove0MoreThanOnce() {
-		ComputerPlayer newComputer = new ComputerPlayer();
+		ComputerPlayer newComputer = new ComputerPlayer(new CautiousStrategy());
 		int aboveZeroTotalCount = 0;
 		newComputer.setMaximumRolls();
 		for (int count = 0; count < 10000; count++) {

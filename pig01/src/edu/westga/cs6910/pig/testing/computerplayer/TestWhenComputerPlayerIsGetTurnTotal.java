@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the getTurnTotal method of ComputerPlayer
@@ -19,7 +20,7 @@ class TestWhenComputerPlayerIsGetTurnTotal {
 	 */
 	@Test
 	void testGetTurnTotalOfNewPlayerShouldReturnTurnTotalOf0() {
-		ComputerPlayer newComputer = new ComputerPlayer();
+		ComputerPlayer newComputer = new ComputerPlayer(new CautiousStrategy());
 		assertEquals(0, newComputer.getTurnTotal());
 	}
 }

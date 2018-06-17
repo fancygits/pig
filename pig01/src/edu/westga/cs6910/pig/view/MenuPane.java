@@ -2,9 +2,13 @@ package edu.westga.cs6910.pig.view;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
+import edu.westga.cs6910.pig.model.stategies.RandomStrategy;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -34,20 +38,38 @@ public class MenuPane extends MenuBar {
 		this.buildPane();
 	}
 	
-	private void buildPane() {		
+	private void buildPane() {
+		this.getFileMenu();
+		this.getStrategyMenu();
+	}
+	
+	private void getFileMenu() {
 		Menu fileMenu = new Menu("_File");
 		MenuItem exitMenuItem = new MenuItem("E_xit");
 		exitMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.SHORTCUT_DOWN));
 		exitMenuItem.setOnAction(actionEvent -> System.exit(0));
 		
 		fileMenu.getItems().addAll(exitMenuItem);
-		
+		this.getMenus().add(fileMenu);
+	}
+	
+	private void getStrategyMenu() {
 		Menu strategyMenu = new Menu("_Strategy");
-		MenuItem cautiousMenuItem = new MenuItem("_Cautious");
-		MenuItem greedyMenuItem = new MenuItem("_Greedy");
-		MenuItem randomMenuItem = new MenuItem("_Random");
-		strategyMenu.getItems().addAll(cautiousMenuItem, greedyMenuItem, randomMenuItem);
+		ToggleGroup strategyToggle = new ToggleGroup();
 		
-		this.getMenus().addAll(fileMenu, strategyMenu);
+		RadioMenuItem cautiousMenuItem = new RadioMenuItem("_Cautious");
+		cautiousMenuItem.setOnAction(event -> this.theComputer.setStrategy(new CautiousStrategy()));
+		cautiousMenuItem.setToggleGroup(strategyToggle);
+		cautiousMenuItem.setSelected(true);
+		
+		RadioMenuItem greedyMenuItem = new RadioMenuItem("_Greedy");
+		greedyMenuItem.setToggleGroup(strategyToggle);
+		
+		RadioMenuItem randomMenuItem = new RadioMenuItem("_Random");
+		randomMenuItem.setToggleGroup(strategyToggle);
+		randomMenuItem.setOnAction(event -> this.theComputer.setStrategy(new RandomStrategy()));
+		
+		strategyMenu.getItems().addAll(cautiousMenuItem, greedyMenuItem, randomMenuItem);
+		this.getMenus().add(strategyMenu);
 	}
 }

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the constructor for Game
@@ -22,7 +23,7 @@ class TestWhenGameIsCreated {
 	 */
 	@Test
 	void testGameConstructorShouldReturnStringWith2PlayersAndNoTotal() {
-		Game newGame = new Game(new HumanPlayer("Luke"), new ComputerPlayer());
+		Game newGame = new Game(new HumanPlayer("Luke"), new ComputerPlayer(new CautiousStrategy()));
 		assertEquals("Goal Score: 100" + System.getProperty("line.separator")
 					+ "Luke: 0" + System.getProperty("line.separator")
 					+ "Simple computer: 0", newGame.toString());

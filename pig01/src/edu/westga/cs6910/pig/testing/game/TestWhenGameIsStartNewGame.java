@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the startNewGame method of Game
@@ -22,7 +23,7 @@ class TestWhenGameIsStartNewGame {
 	 */
 	@Test
 	void testStartNewGameShouldReturnHumanPlayerAndNewDicePair() {
-		Game newGame1 = new Game(new HumanPlayer("Luke"), new ComputerPlayer());
+		Game newGame1 = new Game(new HumanPlayer("Luke"), new ComputerPlayer(new CautiousStrategy()));
 		newGame1.startNewGame(newGame1.getHumanPlayer());
 		assertEquals(true, 
 				newGame1.getHumanPlayer() == newGame1.getCurrentPlayer() 
@@ -35,7 +36,7 @@ class TestWhenGameIsStartNewGame {
 	 */
 	@Test
 	void testStartNewGameShouldReturnComputerPlayerAndNewDicePair() {
-		Game newGame2 = new Game(new HumanPlayer("Luke"), new ComputerPlayer());
+		Game newGame2 = new Game(new HumanPlayer("Luke"), new ComputerPlayer(new CautiousStrategy()));
 		newGame2.startNewGame(newGame2.getComputerPlayer());
 		assertEquals(true, newGame2.getComputerPlayer() == newGame2.getCurrentPlayer() 
 				&& "1, 1".equals(newGame2.getDicePair().getDie1Value() + ", " + newGame2.getDicePair().getDie2Value()));

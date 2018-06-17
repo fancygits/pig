@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the play method of Game
@@ -22,7 +23,7 @@ class TestWhenGameIsPlayed {
 	 */
 	@Test
 	void testPlayShouldReturnTurnTotalAbove0CountAbove0() {
-		Game newGame1 = new Game(new HumanPlayer("Luke"), new ComputerPlayer());
+		Game newGame1 = new Game(new HumanPlayer("Luke"), new ComputerPlayer(new CautiousStrategy()));
 		newGame1.startNewGame(newGame1.getHumanPlayer());
 		int aboveZeroTotalCount = 0;
 		for (int count = 0; count < 10000; count++) {

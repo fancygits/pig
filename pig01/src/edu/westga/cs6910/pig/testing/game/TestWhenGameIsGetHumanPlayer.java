@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the getHumanPlayer method of Game
@@ -22,7 +23,7 @@ class TestWhenGameIsGetHumanPlayer {
 	 */
 	@Test
 	void testGetHumanPlayer() {
-		Game newGame = new Game(new HumanPlayer("Luke"), new ComputerPlayer());
+		Game newGame = new Game(new HumanPlayer("Luke"), new ComputerPlayer(new CautiousStrategy()));
 		assertEquals("Luke", newGame.getHumanPlayer().getName());
 	}
 

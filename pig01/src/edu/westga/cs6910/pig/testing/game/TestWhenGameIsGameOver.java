@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the isGameOver method of Game
@@ -24,7 +25,7 @@ class TestWhenGameIsGameOver {
 	 */
 	@Test
 	void testIsGameOverOnNewGameShouldReturnTrue() {
-		Game newGame1 = new Game(new HumanPlayer("Luke"), new ComputerPlayer());
+		Game newGame1 = new Game(new HumanPlayer("Luke"), new ComputerPlayer(new CautiousStrategy()));
 		assertEquals(true, newGame1.isGameOver());
 	}
 
@@ -37,7 +38,7 @@ class TestWhenGameIsGameOver {
 	 */
 	@Test
 	void testIsGameOverOnStaredGameShouldReturnFalse() {
-		Game newGame2 = new Game(new HumanPlayer("Luke"), new ComputerPlayer());
+		Game newGame2 = new Game(new HumanPlayer("Luke"), new ComputerPlayer(new CautiousStrategy()));
 		newGame2.startNewGame(newGame2.getHumanPlayer());
 		assertEquals(false, newGame2.isGameOver());
 	}

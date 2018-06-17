@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the getDiceValues method of ComputerPlayer
@@ -20,7 +21,7 @@ class TestWhenComputerPlayerGetDiceValues {
 	 */
 	@Test
 	void testGetDiceValues10000TimesWillNeverReturn0Or7() {
-		ComputerPlayer newComputer = new ComputerPlayer();
+		ComputerPlayer newComputer = new ComputerPlayer(new CautiousStrategy());
 		for (int count = 0; count < 10000; count++) {
 			String diceValues = newComputer.getDiceValues();
 			int die1 = Integer.parseInt(diceValues.substring(0, 1));

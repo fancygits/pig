@@ -1,5 +1,7 @@
 package edu.westga.cs6910.pig.model;
 
+import edu.westga.cs6910.pig.model.stategies.PigStrategy;
+
 // DONE: Classes ComputerPlayer and HumanPlayer share most of their code.
 //		 Refactor their code:
 // 		 1. Create abstract base class AbstractPlayer to implement the
@@ -19,27 +21,45 @@ public class ComputerPlayer extends AbstractPlayer {
 	
 	private static final String NAME = "Simple computer";
 	private int maximumRolls;
+	private PigStrategy strategy;
 	
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
+	 * @param strategy	The PigStrategy the player will follow
 	 * 
+	 * Precondition:	strategy != null
 	 */
-	public ComputerPlayer() {
+	public ComputerPlayer(PigStrategy strategy) {
 		super(NAME);
+		if (strategy == null) {
+			throw new IllegalArgumentException("PigStrategy cannot be null");
+		}
+		this.strategy = strategy;
 	}
 
 	@Override
 	/**
 	 * @see Player#takeTurn()
 	 */	
-	public void takeTurn() {	
-		this.setIsMyTurn(true);
-		for (int count = 0; count < this.maximumRolls; count++) {
-			if (this.getIsMyTurn()) {
-				super.takeTurn();
-			}
-		}
+	public void takeTurn() {
+		int turnCount = 0;
+		//this.setIsMyTurn(true);
+		do {
+			super.takeTurn();
+			turnCount++;
+		} while (this.strategy.rollAgain(turnCount, this.getTurnTotal(), 100 - this.getTotal()));
 		this.setIsMyTurn(false);
+	}
+	
+	/**
+	 * Sets the strategy for the computer player
+	 * @param strategy	PigStrategy object
+	 * 
+	 * Precondition:	strategy != null
+	 * Postcondition: 	the specified strategy will determine how the player will play
+	 */
+	public void setStrategy(PigStrategy strategy) {
+		this.strategy = strategy;
 	}
 	
 	//*************************** mutator methods ****************************

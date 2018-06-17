@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the getIsMyTurn method of ComputerPlayer
@@ -20,13 +21,13 @@ class TestWhenComputerPlayerIsGetIsMyTurn {
 	 */
 	@Test
 	void testGetIsMyTurnForNewComputerPlayerShouldReturnFalse() {
-		ComputerPlayer newComputer = new ComputerPlayer();
+		ComputerPlayer newComputer = new ComputerPlayer(new CautiousStrategy());
 		assertEquals(false, newComputer.getIsMyTurn());
 	}
 	
 	@Test
 	void testGetIsMyTurnForComputerPlayerSetIsMyTurnToTrueReturnsTrue() {
-		ComputerPlayer newComputer2 = new ComputerPlayer();
+		ComputerPlayer newComputer2 = new ComputerPlayer(new CautiousStrategy());
 		newComputer2.setIsMyTurn(true);
 		assertEquals(true, newComputer2.getIsMyTurn());
 	}

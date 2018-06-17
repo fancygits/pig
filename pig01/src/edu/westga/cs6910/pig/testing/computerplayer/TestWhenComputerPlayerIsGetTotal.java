@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the getTotal method of ComputerPlayer
@@ -22,7 +23,7 @@ class TestWhenComputerPlayerIsGetTotal {
 	 */
 	@Test
 	void testGetTotalAfterOneTurnShouldReturnPositiveNumberIfNo1sWereRolled() {
-		ComputerPlayer newComputer = new ComputerPlayer();
+		ComputerPlayer newComputer = new ComputerPlayer(new CautiousStrategy());
 		newComputer.setMaximumRolls();
 		do {
 			newComputer.takeTurn();

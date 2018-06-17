@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.HumanPlayer;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 
 /**
  * Tests the getComputerPlayer method of Game
@@ -22,7 +23,7 @@ class TestWhenGameIsGetComputerPlayer {
 	 */
 	@Test
 	void testGetComputerPlayerShouldReturnNameOfSimpleComputer() {
-		Game newGame = new Game(new HumanPlayer("Luke"), new ComputerPlayer());
+		Game newGame = new Game(new HumanPlayer("Luke"), new ComputerPlayer(new CautiousStrategy()));
 		assertEquals("Simple computer", newGame.getComputerPlayer().getName());
 	}
 
