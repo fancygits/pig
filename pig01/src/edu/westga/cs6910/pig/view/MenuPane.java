@@ -3,6 +3,7 @@ package edu.westga.cs6910.pig.view;
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
+import edu.westga.cs6910.pig.model.stategies.GreedyStrategy;
 import edu.westga.cs6910.pig.model.stategies.RandomStrategy;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -64,6 +65,7 @@ public class MenuPane extends MenuBar {
 		
 		RadioMenuItem greedyMenuItem = new RadioMenuItem("_Greedy");
 		greedyMenuItem.setToggleGroup(strategyToggle);
+		greedyMenuItem.setOnAction(event -> this.theComputer.setStrategy(new GreedyStrategy()));
 		
 		RadioMenuItem randomMenuItem = new RadioMenuItem("_Random");
 		randomMenuItem.setToggleGroup(strategyToggle);
