@@ -20,6 +20,7 @@ import edu.westga.cs6910.pig.model.stategies.PigStrategy;
 public class ComputerPlayer extends AbstractPlayer {
 	
 	private static final String NAME = "Simple computer";
+	@SuppressWarnings("unused")
 	private int maximumRolls;
 	private PigStrategy strategy;
 	
