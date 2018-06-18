@@ -43,10 +43,13 @@ public class ComputerPlayer extends AbstractPlayer {
 	 * @see Player#takeTurn()
 	 */	
 	public void takeTurn() {
+		this.resetTurnTotal();
 		int turnCount = 0;
-		//this.setIsMyTurn(true);
 		do {
-			super.takeTurn();
+			if (this.getIsMyTurn()) {
+				super.takeTurn();
+				//System.out.println("Turn Count: " + turnCount + "\tRolled: " + this.getDiceValues() + "\tTurnTotal: " + this.getTurnTotal());
+			}
 			turnCount++;
 		} while (this.strategy.rollAgain(turnCount, this.getTurnTotal(), 100 - this.getTotal()));
 		this.setIsMyTurn(false);

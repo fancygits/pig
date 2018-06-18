@@ -3,8 +3,10 @@ package edu.westga.cs6910.pig.model;
 /**
  * Player defines the interface for players in the game Pig.
  * 
+ * @author James Luke Johnson
  * @author	CS6910
  * @version	Summer 2018
+ * @version 2018.06.17
  */
 public interface Player {
 
@@ -20,6 +22,12 @@ public interface Player {
 	 * 
 	 */
 	void resetTurnTotal();
+
+	/**
+	 * Modifier for isMyTurn
+	 * @param isMyTurn	boolean. True if isMyTurn
+	 */
+	void setIsMyTurn(boolean isMyTurn);
 	
 	//*************************** accessor methods ****************************
 	/**

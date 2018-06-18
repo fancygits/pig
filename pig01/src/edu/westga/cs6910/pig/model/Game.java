@@ -61,7 +61,7 @@ public class Game implements Observable {
 	 */
 	public void startNewGame(Player firstPlayer) {
 		this.currentPlayerObject.setValue(firstPlayer); 
-			
+		firstPlayer.setIsMyTurn(true);
 		this.thePair = new DicePair();		
 	}
 
@@ -196,8 +196,10 @@ public class Game implements Observable {
 		//		 getValue() and setValue()
 		if (this.currentPlayerObject.getValue() == this.theHuman) {
 			this.currentPlayerObject.setValue(this.theComputer);
+			this.theComputer.setIsMyTurn(true);
 		} else {
 			this.currentPlayerObject.setValue(this.theHuman);
+			this.theHuman.setIsMyTurn(true);
 		}
 	}
 
