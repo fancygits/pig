@@ -27,6 +27,7 @@ class TestWhenComputerPlayerTakesTurn {
 		int aboveZeroTotalCount = 0;
 		newComputer.setMaximumRolls();
 		for (int count = 0; count < 10000; count++) {
+			newComputer.setIsMyTurn(true);
 			newComputer.takeTurn();
 			if (newComputer.getTurnTotal() > 0) {
 				aboveZeroTotalCount++;
