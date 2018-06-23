@@ -1,0 +1,11 @@
+CS6910 Pig Game - James Luke Johnson
+
+New Features:
+
+~~~ Start New Game ~~~
+The user can start a new game at any time. By clicking New in the File menu (or using the keyboard shortcut Ctrl + N), 
+the scores are reset to 0 and the previously chosen first player will begin the game again.
+
+To implement this feature, I first created a method in Player to resetGame. Since it works the same for both computer
+and human players, I programmed it in AbstractPlayer. It simply resets the turnTotal and total to 0. Once tested, I 
+ran those methods in the startNewGame method of Game.

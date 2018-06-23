@@ -22,6 +22,11 @@ public interface Player {
 	 * 
 	 */
 	void resetTurnTotal();
+	
+	/**
+	 * Resets the turn total and game total to 0
+	 */
+	void resetGame();
 
 	/**
 	 * Modifier for isMyTurn

@@ -62,6 +62,8 @@ public class Game implements Observable {
 	public void startNewGame(Player firstPlayer) {
 		this.currentPlayerObject.setValue(firstPlayer); 
 		firstPlayer.setIsMyTurn(true);
+		this.theComputer.resetGame();
+		this.theHuman.resetGame();
 		this.thePair = new DicePair();		
 	}
 
