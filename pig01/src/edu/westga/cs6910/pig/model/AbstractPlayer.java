@@ -54,7 +54,8 @@ public abstract class AbstractPlayer implements Player {
 		this.turnTotal = 0;
 	}
 	
-	/* (non-Javadoc)
+	/**
+	 * Resets the turn total and game total to 0
 	 * @see edu.westga.cs6910.pig.model.Player#resetGame()
 	 */
 	public void resetGame() {

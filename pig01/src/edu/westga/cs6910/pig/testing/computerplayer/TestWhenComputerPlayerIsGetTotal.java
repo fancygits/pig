@@ -25,8 +25,8 @@ class TestWhenComputerPlayerIsGetTotal {
 	void testGetTotalAfterOneTurnShouldReturnPositiveNumberIfNo1sWereRolled() {
 		ComputerPlayer newComputer = new ComputerPlayer(new CautiousStrategy());
 		newComputer.setMaximumRolls();
-		newComputer.setIsMyTurn(true);
 		do {
+			newComputer.setIsMyTurn(true);
 			newComputer.takeTurn();
 		} while (newComputer.getTotal() == 0);
 		assertEquals(true, newComputer.getTotal() > 0);
