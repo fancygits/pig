@@ -8,4 +8,5 @@ the scores are reset to 0 and the previously chosen first player will begin the 
 
 To implement this feature, I first created a method in Player to resetGame. Since it works the same for both computer
 and human players, I programmed it in AbstractPlayer. It simply resets the turnTotal and total to 0. Once tested, I 
-ran those methods in the startNewGame method of Game.
+ran those methods in the startNewGame method of Game. Next, I added a "New" menu option in my MenuPane with a keyboard
+shortcut. At first, the new game defaulted to the human player.

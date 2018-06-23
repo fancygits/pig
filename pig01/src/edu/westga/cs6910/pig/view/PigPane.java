@@ -70,9 +70,6 @@ public class PigPane extends BorderPane {
 		topBox.getStyleClass().add("pane-border");	
 		topBox.setAlignment(Pos.CENTER);
 		this.pnChooseFirstPlayer = new NewGamePane(theGame);
-		
-		//MenuPane pnMenu = new MenuPane(theGame);
-		//topBox.getChildren().add(pnMenu);
 		topBox.getChildren().add(this.pnChooseFirstPlayer);
 		
 		this.pnContent.setTop(topBox);

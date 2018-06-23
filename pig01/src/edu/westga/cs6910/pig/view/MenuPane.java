@@ -46,11 +46,15 @@ public class MenuPane extends MenuBar {
 	
 	private void getFileMenu() {
 		Menu fileMenu = new Menu("_File");
+		MenuItem newMenuItem = new MenuItem("_New");
+		newMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.SHORTCUT_DOWN));
+		newMenuItem.setOnAction(actionEvent -> this.theGame.startNewGame(this.theGame.getHumanPlayer()));
+		
 		MenuItem exitMenuItem = new MenuItem("E_xit");
 		exitMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.SHORTCUT_DOWN));
 		exitMenuItem.setOnAction(actionEvent -> System.exit(0));
 		
-		fileMenu.getItems().addAll(exitMenuItem);
+		fileMenu.getItems().addAll(newMenuItem, exitMenuItem);
 		this.getMenus().add(fileMenu);
 	}
 	
