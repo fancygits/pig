@@ -5,6 +5,7 @@ import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
 import edu.westga.cs6910.pig.model.stategies.GreedyStrategy;
 import edu.westga.cs6910.pig.model.stategies.RandomStrategy;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -41,6 +42,7 @@ public class MenuPane extends MenuBar {
 	
 	private void buildPane() {
 		this.getFileMenu();
+		this.getOptionsMenu();
 		this.getStrategyMenu();
 	}
 	
@@ -48,7 +50,7 @@ public class MenuPane extends MenuBar {
 		Menu fileMenu = new Menu("_File");
 		MenuItem newMenuItem = new MenuItem("_New");
 		newMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.SHORTCUT_DOWN));
-		newMenuItem.setOnAction(actionEvent -> this.theGame.startNewGame(this.theGame.getHumanPlayer()));
+		newMenuItem.setOnAction(actionEvent -> this.theGame.startNewGame(this.theGame.getFirstPlayer()));
 		
 		MenuItem exitMenuItem = new MenuItem("E_xit");
 		exitMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.SHORTCUT_DOWN));
@@ -56,6 +58,15 @@ public class MenuPane extends MenuBar {
 		
 		fileMenu.getItems().addAll(newMenuItem, exitMenuItem);
 		this.getMenus().add(fileMenu);
+	}
+	
+	private void getOptionsMenu() {
+		Menu optionsMenu = new Menu("_Options");
+		CheckMenuItem autoRollMenuItem = new CheckMenuItem("Auto-Roll");
+		autoRollMenuItem.setOnAction(e -> 
+			this.theGame.getComputerPlayer().setAutoRoll(autoRollMenuItem.isSelected()));
+		optionsMenu.getItems().addAll(autoRollMenuItem);
+		this.getMenus().add(optionsMenu);
 	}
 	
 	private void getStrategyMenu() {

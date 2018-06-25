@@ -23,6 +23,7 @@ public class ComputerPlayer extends AbstractPlayer {
 	@SuppressWarnings("unused")
 	private int maximumRolls;
 	private PigStrategy strategy;
+	private boolean autoRoll;
 	
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
@@ -36,6 +37,7 @@ public class ComputerPlayer extends AbstractPlayer {
 			throw new IllegalArgumentException("PigStrategy cannot be null");
 		}
 		this.strategy = strategy;
+		this.autoRoll = false;
 	}
 
 	@Override
@@ -53,17 +55,6 @@ public class ComputerPlayer extends AbstractPlayer {
 			turnCount++;
 		} while (this.strategy.rollAgain(turnCount, this.getTurnTotal(), 100 - this.getTotal()));
 		this.setIsMyTurn(false);
-	}
-	
-	/**
-	 * Sets the strategy for the computer player
-	 * @param strategy	PigStrategy object
-	 * 
-	 * Precondition:	strategy != null
-	 * Postcondition: 	the specified strategy will determine how the player will play
-	 */
-	public void setStrategy(PigStrategy strategy) {
-		this.strategy = strategy;
 	}
 	
 	//*************************** mutator methods ****************************
@@ -87,5 +78,34 @@ public class ComputerPlayer extends AbstractPlayer {
 	 */
 	public void setMaximumRolls() {
 		this.maximumRolls = 1;
+	}
+	
+	/**
+	 * Sets the strategy for the computer player
+	 * @param strategy	PigStrategy object
+	 * 
+	 * Precondition:	strategy != null
+	 * Postcondition: 	the specified strategy will determine how the player will play
+	 */
+	public void setStrategy(PigStrategy strategy) {
+		this.strategy = strategy;
+	}
+	
+	/**
+	 * Sets the computer player to autoRoll, taking its turn automatically
+	 * without user input	
+	 * @param autoRoll	boolean True if autoRoll should be on
+	 */
+	public void setAutoRoll(boolean autoRoll) {
+		this.autoRoll = autoRoll;
+	}
+	
+	//*************************** accessor methods ****************************
+	/**
+	 * Accessor method for autoRoll functionality
+	 * @return	boolean autoRoll
+	 */
+	public boolean getAutoRoll() {
+		return this.autoRoll;
 	}
 }

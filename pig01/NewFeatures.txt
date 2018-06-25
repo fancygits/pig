@@ -2,11 +2,22 @@ CS6910 Pig Game - James Luke Johnson
 
 New Features:
 
-~~~ Start New Game ~~~
+~~~ Start New Game ~~~				4 Points
 The user can start a new game at any time. By clicking New in the File menu (or using the keyboard shortcut Ctrl + N), 
 the scores are reset to 0 and the previously chosen first player will begin the game again.
 
 To implement this feature, I first created a method in Player to resetGame. Since it works the same for both computer
 and human players, I programmed it in AbstractPlayer. It simply resets the turnTotal and total to 0. Once tested, I 
 ran those methods in the startNewGame method of Game. Next, I added a "New" menu option in my MenuPane with a keyboard
-shortcut. At first, the new game defaulted to the human player.
+shortcut. To keep track of which player originally went first, I added an instance variable and getter method to Game. It
+made sense to add it to Game since the various Pane classes all communicated with the Game model. Furthermore, the data 
+should be kept separate from the view, if possible.
+
+~~~ Auto Turn-Taking Computer ~~~	4 Points
+The computer will no longer require the Take Turn button to roll. By selecting the new Options Menu, and checking Auto-Roll
+option, the computer will take its turn without any user input.
+
+To implement this feature, I first added an instance variable to ComputerPlayer called autoRoll, along with a getter and
+setter. I chose to use ComputerPlayer since it's shared data and belongs in the model. Then, I created a new Options menu 
+with a CheckMenuItem for Auto-Roll. I added a check in ComputerPane to change the butto text if Auto-Roll isSelected.
+To notify the 

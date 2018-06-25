@@ -83,6 +83,12 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			return;
 		}
 		
+		if (this.theComputer.getAutoRoll()) {
+			this.btnTakeTurn.setText("Auto-Rolling");
+		} else {
+			this.btnTakeTurn.setText("TakeTurn");
+		}
+		
 		boolean myTurn = this.theGame.getCurrentPlayer() == theComputer;
 		
 		// DONE: Set the user interface to show the results
