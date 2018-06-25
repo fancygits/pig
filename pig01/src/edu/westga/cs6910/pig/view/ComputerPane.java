@@ -2,6 +2,8 @@ package edu.westga.cs6910.pig.view;
 
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
@@ -10,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.util.Duration;
 
 /**
  * Defines the pane that lets the user either roll or hold during
@@ -63,7 +66,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 
 		HBox buttonBox = new HBox();
 		buttonBox.getStyleClass().add("box-padding");
-		this.btnTakeTurn = new Button("TakeTurn");
+		this.btnTakeTurn = new Button("Take Turn");
 		this.btnTakeTurn.setOnAction(new TakeTurnListener());
 		buttonBox.getChildren().add(this.btnTakeTurn);
 		this.add(buttonBox, 0, 2);
@@ -82,11 +85,14 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			this.setDisable(true);
 			return;
 		}
-		
-		if (this.theComputer.getAutoRoll()) {
-			this.btnTakeTurn.setText("Auto-Rolling");
+
+		//this.btnTakeTurn.setDisable(this.theComputer.getAutoRoll());
+		if (this.theComputer.getAutoRoll() && this.theGame.getCurrentPlayer() == this.theGame.getComputerPlayer()) {
+			this.autoRollForComputerPlayer();
+		} else if (this.theComputer.getAutoRoll() && this.theGame.getCurrentPlayer() == this.theGame.getHumanPlayer()) {
+			this.btnTakeTurn.setText("Waiting");
 		} else {
-			this.btnTakeTurn.setText("TakeTurn");
+			this.btnTakeTurn.setText("Take Turn");
 		}
 		
 		boolean myTurn = this.theGame.getCurrentPlayer() == theComputer;
@@ -100,6 +106,22 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 		// DONE: Disable this Pane if it is no longer the computer's turn, enable it if
 		// it is the computer's turn
 		this.setDisable(!myTurn);
+	}
+	
+	private void autoRollForComputerPlayer() {
+		Timeline timeline = new Timeline();
+		timeline.getKeyFrames().addAll(
+				new KeyFrame(Duration.ZERO, event ->
+				this.btnTakeTurn.setText("Auto-Rolling")),
+				new KeyFrame(Duration.seconds(1), event -> {
+					if (this.theGame.getCurrentPlayer() == this.theGame.getComputerPlayer()) {
+						this.theGame.play();
+					}
+					this.btnTakeTurn.setText("Waiting");
+				}));
+		timeline.play();
+		
+		//this.theGame.play();
 	}
 
 	/* 

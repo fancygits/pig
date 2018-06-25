@@ -19,5 +19,8 @@ option, the computer will take its turn without any user input.
 
 To implement this feature, I first added an instance variable to ComputerPlayer called autoRoll, along with a getter and
 setter. I chose to use ComputerPlayer since it's shared data and belongs in the model. Then, I created a new Options menu 
-with a CheckMenuItem for Auto-Roll. I added a check in ComputerPane to change the butto text if Auto-Roll isSelected.
-To notify the 
+with a CheckMenuItem for Auto-Roll. I added a check in ComputerPane to change the button text if Auto-Roll isSelected.
+To notify the the user that the computer was taking turns, I added a Timeline feature with the button text changing for 
+one second. I had issues with the timeline continuing to take turns during the HumanPlayer's turn, so I added an additional
+check if the currentPlayer == computerPlayer. This was a lot of trial and error and researching solutions, but it seems 
+to work nicely now.
