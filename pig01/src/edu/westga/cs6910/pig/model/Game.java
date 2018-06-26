@@ -24,6 +24,8 @@ public class Game implements Observable {
 	private Player firstPlayer;
 
 	private DicePair thePair;
+	
+	private int goalScore;
 
 	/**
 	 * Creates a Pig Game with the specified Players and
@@ -42,7 +44,7 @@ public class Game implements Observable {
 		this.theComputer = theComputer;
 		
 		this.currentPlayerObject = new SimpleObjectProperty<Player>();
-		
+		this.goalScore = this.GOAL_SCORE;
 		this.thePair = new DicePair();
 	}
 
@@ -153,7 +155,7 @@ public class Game implements Observable {
 			return true;
 		}
 		
-		if (this.currentPlayerObject.getValue().getTotal() >= GOAL_SCORE) {
+		if (this.currentPlayerObject.getValue().getTotal() >= this.goalScore) {
 			return true;
 		}
 		return false;
@@ -175,7 +177,7 @@ public class Game implements Observable {
 	 * @return a String representation of this Game
 	 */
 	public String toString() {	
-		String result = "Goal Score: " + GOAL_SCORE;
+		String result = "Goal Score: " + this.goalScore;
 		result += System.getProperty("line.separator")
 				+ this.theHuman.getName() + ": "
 				+ this.theHuman.getTotal();
@@ -187,10 +189,10 @@ public class Game implements Observable {
 		//	return result;
 		//}
 		
-		if (this.theHuman.getTotal() >= GOAL_SCORE) {
+		if (this.theHuman.getTotal() >= this.goalScore) {
 			return result + System.getProperty("line.separator")
 					+ "Game over! Winner: " + this.theHuman.getName();
-		} else if (this.theComputer.getTotal() >= GOAL_SCORE) {
+		} else if (this.theComputer.getTotal() >= this.goalScore) {
 			return result + System.getProperty("line.separator")
 					+ "Game over! Winner: " + this.theComputer.getName();
 		} else {

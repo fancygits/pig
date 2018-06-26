@@ -51,8 +51,8 @@ public class PigPane extends BorderPane {
 	 */
 	public PigPane(Game theGame) {
 		this.theGame = theGame;
-		
 		this.pnContent = new BorderPane();
+		this.addMenu(theGame);
 		
 		this.addFirstPlayerChooserPane(theGame);		
 		
@@ -68,16 +68,10 @@ public class PigPane extends BorderPane {
 		this.addComputerPlayerPane(theGame);
 		
 		this.setCenter(this.pnContent);
-		
-		this.addMenu(theGame);
 	}
 	
 	private void addMenu(Game theGame) {
 		MenuPane pnMenu = new MenuPane(theGame);
-		/*pnMenu.setOnMouseClicked(e -> {
-			this.pnGameInfo.setDisable(true);
-			this.pnGameInfo.setDisable(false);
-		});*/
 		PigPane.this.setTop(pnMenu);
 	}
 	
