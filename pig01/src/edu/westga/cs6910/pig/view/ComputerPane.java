@@ -86,7 +86,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 			return;
 		}
 
-		//this.btnTakeTurn.setDisable(this.theComputer.getAutoRoll());
+		this.btnTakeTurn.setDisable(this.theComputer.getAutoRoll());
 		if (this.theComputer.getAutoRoll() && this.theGame.getCurrentPlayer() == this.theGame.getComputerPlayer()) {
 			this.autoRollForComputerPlayer();
 		} else if (this.theComputer.getAutoRoll() && this.theGame.getCurrentPlayer() == this.theGame.getHumanPlayer()) {
@@ -109,10 +109,13 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	}
 	
 	private void autoRollForComputerPlayer() {
+		if (this.theGame.getCurrentPlayer() == this.theGame.getComputerPlayer()) {
 		Timeline timeline = new Timeline();
+		timeline.setCycleCount(1);
 		timeline.getKeyFrames().addAll(
-				new KeyFrame(Duration.ZERO, event ->
-				this.btnTakeTurn.setText("Auto-Rolling")),
+				new KeyFrame(Duration.ZERO, event -> {
+					this.btnTakeTurn.setText("Auto-Rolling");
+				}),
 				new KeyFrame(Duration.seconds(1), event -> {
 					if (this.theGame.getCurrentPlayer() == this.theGame.getComputerPlayer()) {
 						this.theGame.play();
@@ -120,8 +123,7 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 					this.btnTakeTurn.setText("Waiting");
 				}));
 		timeline.play();
-		
-		//this.theGame.play();
+		}
 	}
 
 	/* 

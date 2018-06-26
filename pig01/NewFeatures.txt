@@ -12,6 +12,10 @@ ran those methods in the startNewGame method of Game. Next, I added a "New" menu
 shortcut. To keep track of which player originally went first, I added an instance variable and getter method to Game. It
 made sense to add it to Game since the various Pane classes all communicated with the Game model. Furthermore, the data 
 should be kept separate from the view, if possible.
+During testing, I encountered problems where both player panes were disabled and the MenuPane had no way to setDisable(false)
+so I moved the entire MenuPane class inside PigPane, similar to NewGamePane. This fixed the issues since I could now directly
+change properties of the panes.
+
 
 ~~~ Auto Turn-Taking Computer ~~~	4 Points
 The computer will no longer require the Take Turn button to roll. By selecting the new Options Menu, and checking Auto-Roll
@@ -24,3 +28,7 @@ To notify the the user that the computer was taking turns, I added a Timeline fe
 one second. I had issues with the timeline continuing to take turns during the HumanPlayer's turn, so I added an additional
 check if the currentPlayer == computerPlayer. This was a lot of trial and error and researching solutions, but it seems 
 to work nicely now.
+One bug, the ComputerPane autoRolls twice. The button doesn't change to Waiting until 1 second AFTER the turn is already
+finished. It doesn't seem to affect game play (the ComputerPlayer doesn't take two turns), but it annoys me.
+
+

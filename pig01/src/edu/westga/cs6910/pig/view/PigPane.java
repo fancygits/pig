@@ -1,12 +1,24 @@
 package edu.westga.cs6910.pig.view;
 
+import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
+import edu.westga.cs6910.pig.model.stategies.CautiousStrategy;
+import edu.westga.cs6910.pig.model.stategies.GreedyStrategy;
+import edu.westga.cs6910.pig.model.stategies.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.CheckMenuItem;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
+import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -62,6 +74,10 @@ public class PigPane extends BorderPane {
 	
 	private void addMenu(Game theGame) {
 		MenuPane pnMenu = new MenuPane(theGame);
+		/*pnMenu.setOnMouseClicked(e -> {
+			this.pnGameInfo.setDisable(true);
+			this.pnGameInfo.setDisable(false);
+		});*/
 		PigPane.this.setTop(pnMenu);
 	}
 	
@@ -97,6 +113,93 @@ public class PigPane extends BorderPane {
 		this.pnComputerPlayer = new ComputerPane(theGame);
 		rightBox.getChildren().add(this.pnComputerPlayer);
 		this.pnContent.setRight(rightBox);
+	}
+	
+	
+	/**
+	 * Defines the pane of the menu, where the user can exit and 
+	 * select a computer strategy
+	 */
+	private final class MenuPane extends MenuBar {
+		private Game theGame;
+		private ComputerPlayer theComputer;
+		
+		/**
+		 * Creates a new ComputerPane that observes the specified game. 
+		 * 
+		 * @param theGame	the model object from which this pane gets its data
+		 * 
+		 * @requires 	theGame != null
+		 */
+		private MenuPane(Game theGame) {
+			this.theGame = theGame;
+			this.theComputer = this.theGame.getComputerPlayer();
+			
+			this.buildPane();
+		}
+		
+		private void buildPane() {
+			this.getFileMenu();
+			this.getOptionsMenu();
+			this.getStrategyMenu();
+			
+		}
+		
+		private void getFileMenu() {
+			Menu fileMenu = new Menu("_File");
+			MenuItem newMenuItem = new MenuItem("_New");
+			newMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.N, KeyCombination.SHORTCUT_DOWN));
+			newMenuItem.setOnAction(actionEvent -> {
+				try {
+					this.theGame.startNewGame(this.theGame.getFirstPlayer());
+					if (this.theGame.getFirstPlayer() == this.theComputer) {
+						PigPane.this.pnComputerPlayer.setDisable(false);
+						this.theComputer.setIsMyTurn(true);
+					} else {
+						PigPane.this.pnHumanPlayer.setDisable(false);
+					}
+				} catch (NullPointerException npe) {
+					
+				}
+			});
+			
+			MenuItem exitMenuItem = new MenuItem("E_xit");
+			exitMenuItem.setAccelerator(new KeyCodeCombination(KeyCode.X, KeyCombination.SHORTCUT_DOWN));
+			exitMenuItem.setOnAction(actionEvent -> System.exit(0));
+			
+			fileMenu.getItems().addAll(newMenuItem, exitMenuItem);
+			this.getMenus().add(fileMenu);
+		}
+		
+		private void getOptionsMenu() {
+			Menu optionsMenu = new Menu("_Options");
+			CheckMenuItem autoRollMenuItem = new CheckMenuItem("Auto-Roll");
+			autoRollMenuItem.setOnAction(e -> 
+				this.theComputer.setAutoRoll(autoRollMenuItem.isSelected()));
+			optionsMenu.getItems().addAll(autoRollMenuItem);
+			this.getMenus().add(optionsMenu);
+		}
+		
+		private void getStrategyMenu() {
+			Menu strategyMenu = new Menu("_Strategy");
+			ToggleGroup strategyToggle = new ToggleGroup();
+			
+			RadioMenuItem cautiousMenuItem = new RadioMenuItem("_Cautious");
+			cautiousMenuItem.setOnAction(event -> this.theComputer.setStrategy(new CautiousStrategy()));
+			cautiousMenuItem.setToggleGroup(strategyToggle);
+			cautiousMenuItem.setSelected(true);
+			
+			RadioMenuItem greedyMenuItem = new RadioMenuItem("_Greedy");
+			greedyMenuItem.setToggleGroup(strategyToggle);
+			greedyMenuItem.setOnAction(event -> this.theComputer.setStrategy(new GreedyStrategy()));
+			
+			RadioMenuItem randomMenuItem = new RadioMenuItem("_Random");
+			randomMenuItem.setToggleGroup(strategyToggle);
+			randomMenuItem.setOnAction(event -> this.theComputer.setStrategy(new RandomStrategy()));
+			
+			strategyMenu.getItems().addAll(cautiousMenuItem, greedyMenuItem, randomMenuItem);
+			this.getMenus().add(strategyMenu);
+		}
 	}
 	
 	/*
