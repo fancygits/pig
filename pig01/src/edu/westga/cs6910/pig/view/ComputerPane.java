@@ -109,7 +109,6 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 	}
 	
 	private void autoRollForComputerPlayer() {
-		if (this.theGame.getCurrentPlayer() == this.theGame.getComputerPlayer()) {
 		Timeline timeline = new Timeline();
 		timeline.setCycleCount(1);
 		timeline.getKeyFrames().addAll(
@@ -123,7 +122,6 @@ public class ComputerPane extends GridPane implements InvalidationListener {
 					this.btnTakeTurn.setText("Waiting");
 				}));
 		timeline.play();
-		}
 	}
 
 	/* 
