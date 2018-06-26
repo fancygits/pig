@@ -1,5 +1,7 @@
 package edu.westga.cs6910.pig.view;
 
+import java.util.Optional;
+
 import edu.westga.cs6910.pig.model.ComputerPlayer;
 import edu.westga.cs6910.pig.model.Game;
 import edu.westga.cs6910.pig.model.Player;
@@ -9,13 +11,17 @@ import edu.westga.cs6910.pig.model.stategies.RandomStrategy;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.RadioMenuItem;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -170,7 +176,31 @@ public class PigPane extends BorderPane {
 			CheckMenuItem autoRollMenuItem = new CheckMenuItem("Auto-Roll");
 			autoRollMenuItem.setOnAction(e -> 
 				this.theComputer.setAutoRoll(autoRollMenuItem.isSelected()));
-			optionsMenu.getItems().addAll(autoRollMenuItem);
+			MenuItem setGoalScoreMenuItem = new MenuItem("Set Goal Score");
+			setGoalScoreMenuItem.setOnAction(e -> {
+				TextInputDialog popup = new TextInputDialog("100");
+				popup.setTitle("Set Goal Score");
+				popup.setHeaderText("Set a new goal score");
+				popup.setContentText("Goal Score:");
+				Optional<String> result = popup.showAndWait();
+				int newGoalScore = 100;
+				Alert alert = new Alert(
+						AlertType.ERROR, 
+						"That's not a valid goal score!\nGoal score is unchanged.", 
+						ButtonType.OK);
+				try {
+					newGoalScore = Integer.parseInt(result.get());
+					if (newGoalScore < 1) {
+						alert.showAndWait();
+					} else {
+						this.theGame.setGoalScore(newGoalScore);
+					}
+				} catch (NumberFormatException nfe) {
+					alert.showAndWait();
+				}
+				
+			});
+			optionsMenu.getItems().addAll(autoRollMenuItem, setGoalScoreMenuItem);
 			this.getMenus().add(optionsMenu);
 		}
 		

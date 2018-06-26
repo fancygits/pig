@@ -44,7 +44,7 @@ public class Game implements Observable {
 		this.theComputer = theComputer;
 		
 		this.currentPlayerObject = new SimpleObjectProperty<Player>();
-		this.goalScore = this.GOAL_SCORE;
+		this.goalScore = GOAL_SCORE;
 		this.thePair = new DicePair();
 	}
 
@@ -118,6 +118,7 @@ public class Game implements Observable {
 	public void setGoalScore(int goalScore) {
 		if (goalScore > 0) {
 			this.goalScore = goalScore;
+			this.theComputer.setGoalScore(goalScore);
 		}
 	}
 

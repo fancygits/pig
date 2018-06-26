@@ -33,11 +33,11 @@ finished. It doesn't seem to affect game play (the ComputerPlayer doesn't take t
 
 
 ~~~ User Set Goal Score ~~~  		2 Points
-The user can now set the Goal Score using the menu option with a popup prompt. Once the goal score is set, it will remain
-that way until changed again. The default score of 100 still applies at initialization.
+The user can now set the Goal Score using the menu option with a TextInputDialog prompt. Once the goal score is set, it 
+will remain that way until changed again. The default score of 100 still applies at initialization.
 
 To implement this feature, I created an instance variable for goalScore in Game and set it to the constant GOAL_SCORE at 
 construction. I also created a getter and setter method for goalScore. I realized that the ComputerPlayer needs access to 
-the goalScore to use in its rollAgain function. Since the ComputerPlayer doesn't speak directly to Game, I added a setter
-method for a new instance variable for goalScore on ComputerPlayer. The MenuPane can now ask the user for a goal score, 
-validate it, and pass it to Game AND ComputerPlayer.
+the goalScore to use in its rollAgain function. So I added a setter method for a new instance variable for goalScore on 
+ComputerPlayer. The MenuPane can now ask the user for a goal score, validate it, and pass it to Game which passes it along
+to ComputerPlayer.
