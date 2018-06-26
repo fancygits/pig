@@ -24,6 +24,7 @@ public class ComputerPlayer extends AbstractPlayer {
 	private int maximumRolls;
 	private PigStrategy strategy;
 	private boolean autoRoll;
+	private int goalScore;
 	
 	/**
 	 * Creates a new ComputerPlayer with the specified name.
@@ -36,6 +37,7 @@ public class ComputerPlayer extends AbstractPlayer {
 		if (strategy == null) {
 			throw new IllegalArgumentException("PigStrategy cannot be null");
 		}
+		this.goalScore = 100;
 		this.strategy = strategy;
 		this.autoRoll = false;
 	}
@@ -53,7 +55,7 @@ public class ComputerPlayer extends AbstractPlayer {
 				//System.out.println("Turn Count: " + turnCount + "\tRolled: " + this.getDiceValues() + "\tTurnTotal: " + this.getTurnTotal());
 			}
 			turnCount++;
-		} while (this.strategy.rollAgain(turnCount, this.getTurnTotal(), 100 - this.getTotal()));
+		} while (this.strategy.rollAgain(turnCount, this.getTurnTotal(), this.goalScore - this.getTotal()));
 		this.setIsMyTurn(false);
 	}
 	
@@ -98,6 +100,16 @@ public class ComputerPlayer extends AbstractPlayer {
 	 */
 	public void setAutoRoll(boolean autoRoll) {
 		this.autoRoll = autoRoll;
+	}
+	
+	/**
+	 * Sets the goalScore, for use in rollAgain
+	 * @param goalScore		int goalScore of the Game
+	 */
+	public void setGoalScore(int goalScore) {
+		if (goalScore > 0) {
+			this.goalScore = goalScore;
+		}
 	}
 	
 	//*************************** accessor methods ****************************

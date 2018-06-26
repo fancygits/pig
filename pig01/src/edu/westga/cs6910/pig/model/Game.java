@@ -108,6 +108,18 @@ public class Game implements Observable {
 			this.swapWhoseTurn();
 		}
 	}
+	
+	/**
+	 * Sets the goalScore to the given int
+	 * @param goalScore	int new Goal Score
+	 * 
+	 * Precondition:	goalScore > 0
+	 */
+	public void setGoalScore(int goalScore) {
+		if (goalScore > 0) {
+			this.goalScore = goalScore;
+		}
+	}
 
 	// *********************** accessor methods *************************
 	/**
@@ -168,6 +180,14 @@ public class Game implements Observable {
 	 */
 	public DicePair getDicePair() {
 		return this.thePair;
+	}
+	
+	/**
+	 * Returns the Goal Score
+	 * @return	int goalScore
+	 */
+	public int getGoalScore() {
+		return this.goalScore;
 	}
 
 	/**
