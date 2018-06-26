@@ -44,9 +44,9 @@ to ComputerPlayer.
 
 
 ~~~ Random First Player ~~~			2 Points
-The user can now click a radio button to get a random first player. That first player is persistent across new games.
+The user can now click a button to get a random first player. That first player is persistent across new games.
 
-This was the easiest feature to implement. I added another radio button to the NewGamePane with the setOnAction to randomly
+This was the easiest feature to implement. I added a button to the NewGamePane with the setOnAction to randomly
 fire one of the other two Player choices. I would like to add a fancy graphic with a spinning arrow choosing which randomly
 stops on either the Human or Computer player. I would also like to add a dice rolling animation. But that will take MUCH 
 longer to implement and I'm running out of time. 

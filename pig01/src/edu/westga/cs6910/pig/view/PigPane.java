@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.Menu;
@@ -21,7 +23,6 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyCombination;
@@ -257,7 +258,7 @@ public class PigPane extends BorderPane {
 			this.radComputerPlayer = new RadioButton(this.theComputer.getName() + " first");
 			this.radComputerPlayer.setOnAction(new ComputerFirstListener());
 			
-			RadioButton randomPlayer = new RadioButton("Random first player");
+			Button randomPlayer = new Button("Random first player");
 			randomPlayer.setOnAction(e -> {
 				if (Math.random() > 0.5) {
 					this.radHumanPlayer.fire();
@@ -267,7 +268,7 @@ public class PigPane extends BorderPane {
 			});
 			// DONE: Create a ToggleGroup and add the 2 radio buttons to it.
 			ToggleGroup radPlayers = new ToggleGroup();
-			radPlayers.getToggles().addAll(this.radHumanPlayer, this.radComputerPlayer, randomPlayer);
+			radPlayers.getToggles().addAll(this.radHumanPlayer, this.radComputerPlayer);
 			// DONE: Add the 2 radio buttons to this pane.
 			this.add(this.radHumanPlayer, 0, 0);
 			this.add(this.radComputerPlayer, 1, 0);

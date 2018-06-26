@@ -70,6 +70,7 @@ nav li {
 
 main {
 	flex: 1;
+	margin-bottom: 20px;
 }
 
 h3 {
@@ -147,15 +148,43 @@ footer a {
 
 hr {
 	background-color: #000;
-    border: 0;
-    height: 10px;
+	border: 0;
+	height: 10px;
 	margin:1em -100%; /* old browsers fallback */
-  	margin:1em calc(50% - 49vw);
+	margin:1em calc(50% - 49vw);
 }
 
 strong {
 	font-family: 'Bowlby One SC', cursive;
 	font-weight: 100;
+}
+
+table {
+	border: 6px solid #010502;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+}
+table td, table th {
+	border: 1px solid #000000;
+	padding: 3px 2px;
+}
+table tbody td {
+	font-size: 13px;
+}
+table thead {
+	font-family: 'Bowlby One SC', cursive;
+	font-weight: 100;
+	background: #EC576B;
+	background: -moz-linear-gradient(top, #f18190 0%, #ee6779 66%, #EC576B 100%);
+	background: -webkit-linear-gradient(top, #f18190 0%, #ee6779 66%, #EC576B 100%);
+	background: linear-gradient(to bottom, #f18190 0%, #ee6779 66%, #EC576B 100%);
+}
+table thead th {
+	font-size: 19px;
+	font-weight: bold;
+	color: #F0F0F0;
+	text-align: center;
 }
 
 /* SCREEN SIZE ADJUSTMENTS */
