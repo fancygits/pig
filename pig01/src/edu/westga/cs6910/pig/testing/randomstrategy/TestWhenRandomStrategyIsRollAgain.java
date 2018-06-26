@@ -23,11 +23,29 @@ class TestWhenRandomStrategyIsRollAgain {
 		RandomStrategy randomStrategy = new RandomStrategy();
 		int trueCount = 0;
 		for (int count = 0; count < 10000; count++) {
-			if (randomStrategy.rollAgain(0, 0, 0)) {
+			if (randomStrategy.rollAgain(0, 0, 10)) {
 				trueCount++;
 			}
 		}
-		assertEquals(true, trueCount > 4800 && trueCount < 5200);
+		assertEquals(true, trueCount > 4500 && trueCount < 5500);
+	}
+	
+	/**
+	 * Test to confirm that rollAgain will return false when distanceToGoal is < 0
+	 */
+	@Test
+	void testRollAgainForRandomStrategyWhenDistanceToGoalIsLessThan0ShouldReturnFalse() {
+		RandomStrategy random1 = new RandomStrategy();
+		assertEquals(false, random1.rollAgain(0, 0, -10));
+	}
+	
+	/**
+	 * Test to confirm that rollAgain will return false when distanceToGoal is < 0
+	 */
+	@Test
+	void testRollAgainForRandomStrategyWhenDistanceToGoalIs0ShouldReturnFalse() {
+		RandomStrategy random2 = new RandomStrategy();
+		assertEquals(false, random2.rollAgain(0, 0, 0));
 	}
 
 }

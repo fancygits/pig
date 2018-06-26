@@ -12,11 +12,16 @@ public class GreedyStrategy implements PigStrategy {
 	 * @see edu.westga.cs6910.pig.model.stategies.PigStrategy#rollAgain(int, int, int)
 	 */
 	/** 
-	 * Will attempt to roll again at most 3 times
+	 * Will attempt to roll again at most 3 times unless it already won
+	 * 
+	 * Precondition:	distanceToGoal > 0
 	 */
 	@Override
 	public boolean rollAgain(int currentNumberOfRolls, int currentTurnTotal, int distanceToGoal) {
-		return currentNumberOfRolls < 3;
+		if (distanceToGoal > 0) {
+			return currentNumberOfRolls < 3;
+		}
+		return false;
 	}
 
 }

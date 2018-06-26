@@ -1,5 +1,6 @@
 package edu.westga.cs6910.pig.testing.greedystrategy;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
@@ -22,7 +23,7 @@ class TestGreedyStrategyWhenRollAgain {
 	void testRollAgain10000TimesForCurrentNumberOfRollsLessThan3ShouldAlwaysReturnTrue() {
 		GreedyStrategy greedy = new GreedyStrategy();
 		for (int count = 0; count < 10000; count++) {
-			if (!greedy.rollAgain((int) (Math.random() * 3), 0, 0)) {
+			if (!greedy.rollAgain((int) (Math.random() * 3), 0, 10)) {
 				fail("GreedyStrategy returned false under 3 rolls");
 			}
 		}
@@ -36,10 +37,28 @@ class TestGreedyStrategyWhenRollAgain {
 	void testRollAgain10000TimesForCurrentNumberOfRollsGreaterThan3ShouldAlwaysReturnFalse() {
 		GreedyStrategy greedy = new GreedyStrategy();
 		for (int count = 0; count < 10000; count++) {
-			if (greedy.rollAgain((int) (Math.random() * 100) + 3, 0, 0)) {
+			if (greedy.rollAgain((int) (Math.random() * 100) + 3, 0, 10)) {
 				fail("GreedyStrategy returned false under 3 rolls");
 			}
 		}
+	}
+	
+	/**
+	 * Test to confirm that rollAgain will return false when distanceToGoal is < 0
+	 */
+	@Test
+	void testRollAgainForGreedyStrategyWhenDistanceToGoalIsLessThan0ShouldReturnFalse() {
+		GreedyStrategy greedy = new GreedyStrategy();
+		assertEquals(false, greedy.rollAgain(0, 0, -10));
+	}
+	
+	/**
+	 * Test to confirm that rollAgain will return false when distanceToGoal is < 0
+	 */
+	@Test
+	void testRollAgainForGreedyStrategyWhenDistanceToGoalIs0ShouldReturnFalse() {
+		GreedyStrategy greedy = new GreedyStrategy();
+		assertEquals(false, greedy.rollAgain(0, 0, 0));
 	}
 
 }

@@ -13,10 +13,15 @@ public class RandomStrategy implements PigStrategy {
 	 */
 	/** 
 	 * Randomly chooses to roll again or not
+	 * 
+	 * Precondition:	distanceToGoal > 0
 	 */
 	@Override
 	public boolean rollAgain(int currentNumberOfRolls, int currentTurnTotal, int distanceToGoal) {
-		return Math.random() > 0.5;
+		if (distanceToGoal > 0) {
+			return Math.random() > 0.5;
+		}
+		return false;
 	}
 
 }
